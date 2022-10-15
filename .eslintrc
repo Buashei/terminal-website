@@ -48,6 +48,8 @@
         "singleQuote": true
       }
     ],
+    "react/button-has-type": ["error"],
+    "react/no-array-index-key": ["warn"],
     "react/react-in-jsx-scope": ["off"],
     "react/jsx-closing-bracket-location": ["off"],
     "react/jsx-child-element-spacing": ["error"]
