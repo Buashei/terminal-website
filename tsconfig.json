@@ -28,6 +28,6 @@
       "@assets/*": ["src/assets/*"]
     }
   },
-  "include": ["vite.config.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["vite.config.ts", "**/*.ts", "**/*.tsx", ".plopfile"],
   "exclude": ["node_modules"]
 }
