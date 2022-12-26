@@ -1,0 +1,36 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"workbench.colorTheme": "GrunBoxTheme",
+		"workbench.iconTheme": "icons",
+		"git.ignoreMissingGitWarning": true,
+		"files.insertFinalNewline": true,
+		"editor.fontLigatures": true,
+		"editor.fontFamily": "'Cascade Code', 'Fira Code'",
+		"editor.tabSize": 2,
+		"editor.stickyScroll.enabled": true,
+		"editor.formatOnSave": true,
+		"editor.rulers": [{
+			"column": 120,
+			"color": "#474343be"
+		}],
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"eslint.validate": [
+		  "javascript",
+		  "javascriptreact",
+		  "typescript", // Enable .ts
+		  "typescriptreact" // Enable .tsx
+		],
+		"prettier.documentSelectors": ["**/*.astro"],
+		"[typescriptreact]": {
+		  "editor.defaultFormatter": "esbenp.prettier-vscode"
+		},
+		"[typescript]": {
+		  "editor.defaultFormatter": "esbenp.prettier-vscode"
+		}
+	}
+}
