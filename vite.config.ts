@@ -7,6 +7,11 @@ import eslint from 'vite-plugin-eslint';
 export default defineConfig({
   plugins: [tsconfigPaths(), eslint(), react()],
   server: {
+    watch: {
+      usePolling: true,
+    },
+    host: true,
+    strictPort: true,
     port: 2137,
   },
 });

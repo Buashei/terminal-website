@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  frontend:
+    build: .
+    container_name: terminal-fe
+    ports:
+      - '2137:2137'
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true

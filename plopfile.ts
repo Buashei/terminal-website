@@ -1,6 +1,8 @@
 import _ from 'lodash';
+import type { NodePlopAPI } from "plop";
 
-export default function (plop) {
+
+export default function (plop: NodePlopAPI) {
   // plop generator code
   plop.setHelper('camelCase', (txt) => _.camelCase(txt));
   plop.setHelper('lowerCase', (txt) => txt.toLowerCase());
