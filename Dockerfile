@@ -1,13 +1,14 @@
-FROM node:18-alpine
+FROM node:18.12.1-bullseye-slim
+
+USER node
 
 WORKDIR /app
 
 COPY ./package.json /app
-COPY ./package-lock.json /app
 
-RUN npm ci
+RUN npm install
 
-COPY ./ /app
+COPY . /app
 
 EXPOSE 2137
 

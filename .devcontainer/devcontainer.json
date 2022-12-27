@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
 {
-	"name": "Terminal Website Dev",
+	"name": "Terminal Website",
 	"build": {
 		// Sets the run context to one level up instead of the .devcontainer folder.
 		"context": "..",
@@ -13,7 +13,7 @@
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [80,2137] 
+	"forwardPorts": [2137],
 
 	// Uncomment the next line to run commands after the container is created.
 	// "postCreateCommand": "cat /etc/os-release",
@@ -21,6 +21,43 @@
 	// Configure tool-specific properties.
 	// "customizations": {},
 
+	// Define VSCode extension required in project
+  "extensions": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "tal7aouy.icons"
+  ],
+
+	// Define VSCode consistent settings required in project
+  "settings": {
+		"workbench.colorTheme": "GrunBoxTheme",
+		"workbench.iconTheme": "icons",
+		"git.ignoreMissingGitWarning": true,
+		"files.insertFinalNewline": true,
+		"editor.fontLigatures": true,
+		"editor.fontFamily": "'Cascade Code', 'Fira Code'",
+		"editor.tabSize": 2,
+		"editor.stickyScroll.enabled": true,
+		"editor.formatOnSave": true,
+		"editor.rulers": [{
+			"column": 120,
+			"color": "#474343be"
+		}],
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"eslint.validate": [
+		  "javascript",
+		  "javascriptreact",
+		  "typescript", // Enable .ts
+		  "typescriptreact" // Enable .tsx
+		],
+		"[typescriptreact]": {
+		  "editor.defaultFormatter": "esbenp.prettier-vscode"
+		},
+		"[typescript]": {
+		  "editor.defaultFormatter": "esbenp.prettier-vscode"
+		}
+	},
+
 	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "devcontainer"
+	"remoteUser": "node"
 }

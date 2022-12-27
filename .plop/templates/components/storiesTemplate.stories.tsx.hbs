@@ -1,0 +1,14 @@
+import React from 'react';
+
+import type { ComponentMeta } from '@storybook/react';
+
+import { {{capitalize componentsName}} } from './{{capitalize componentsName}}';
+
+export default {
+  /* 👇 The title prop is optional.
+   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
+   * to learn how to generate automatic titles
+   */
+  title: '{{capitalize componentsName}}',
+  component: {{capitalize componentsName}},
+} as ComponentMeta<typeof {{capitalize componentsName}}>;

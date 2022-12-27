@@ -2,7 +2,11 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": false,
@@ -23,11 +27,24 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@": ["src"],
-      "@/*": ["src/*"],
-      "@assets/*": ["src/assets/*"]
+      "@": [
+        "src"
+      ],
+      "@/*": [
+        "src/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ]
     }
   },
-  "include": ["vite.config.ts", ".plopfile.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "vite.config.ts",
+    ".plopfile.ts",
+    "**/*.ts",
+    "**/*.tsx",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
