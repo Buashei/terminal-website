@@ -12,6 +12,9 @@ export default defineConfig({
     environment: 'jsdom',
     // include: ['**/**/*.{test}.{ts,mts,cts,tsx}'],
     setupFiles: './vitest.setup.ts',
+    coverage: {
+      reporter: ['text', 'json', 'html'],
+    },
   },
   server: {
     watch: {
