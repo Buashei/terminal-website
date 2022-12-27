@@ -10,7 +10,7 @@
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint --fix . --ext .ts,.tsx",
+    "lint:fix": "eslint --quiet --fix . --ext .ts,.tsx",
     "prettier": "npx prettier src --check",
     "prettier:fix": "npm run prettier -- --write",
     "format": "npm run prettier:fix && npm run lint:fix",
