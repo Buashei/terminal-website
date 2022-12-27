@@ -25,13 +25,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "incremental": true,
-    "baseUrl": ".",
-    "paths": {
-      "@": ["src"],
-      "@/*": ["src/*"],
-      "@assets/*": ["src/assets/*"],
-      "@components": ["src/components"]
-    }
+    "baseUrl": "."
   },
   "include": [
     "vite.config.ts",
