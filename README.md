@@ -18,7 +18,9 @@ Thank you for visiting!
 
 ## Prerequisites
 
-- Docker
+[![Docker](https://img.shields.io/badge/Docker-2496ED.svg?style=for-the-badge&logo=Docker&logoColor=white)](https://www.docker.com/)  
+[![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)](http://code.visualstudio.com)  
+[![WSL](https://img.shields.io/badge/Windows%2011-%230079d5.svg?style=for-the-badge&logo=Windows%20Subsystem%20for%20Linux&logoColor=white)](https://learn.microsoft.com/en-us/windows/wsl/)
 
 ## Setup
 
@@ -31,13 +33,11 @@ Thank you for visiting!
     docker-compose up --build
     ```
 
-  - Install the Visual Studio Code extensions if you haven't already:
+  - Open the Visual Studio Code in root direction of project.
 
-    - ms-azuretools.vscode-docker
-    - dbaeumer.vscode-eslint
-    - esbenp.prettier-vscode
+  - Run the `Dev Containers: Reopen in Container...` command from the Command Palette (F1), and select the `terminal-fe` project.
 
-  - Run the `Dev Containers: Attach to Running Container...` command from the Command Palette (F1), and select the `terminal-fe` project.
+  - Every necessary extensions and settings will be installed and configured when DevContainer is run for the first time
 
 - ### Normal startup
 
@@ -52,7 +52,7 @@ Thank you for visiting!
 
 ## Development
 
-Describe any useful development scripts, such as a script to lint the code or run tests.
+### Describe any useful development scripts, such as a script to lint the code or run tests.
 
 - `dev` - a command that is run at container startup. It is used to start a live server in the development environment
 - `build` - to build the production version of the application
@@ -66,6 +66,12 @@ Describe any useful development scripts, such as a script to lint the code or ru
 - `format` - to log lint and format errors in files using ESLint and Prettier. Started automatically by `husky` every time you run `git commit -m " "`
 - `prepare` - to automatically have Git hooks enabled after install
 - `plop` - A little tool that saves you time and helps your team build new files with consistency. Generate code when you want, how you want.
+
+### If you would like to see the output of the container in the terminal built into WSL.
+
+- Go to `Remote Explorer` tab in VSCode
+- Right click on `terminal-website terminal-fe` in Dev Containers tab
+- Choose `Show Container Log`
 
 ## Deployment
 

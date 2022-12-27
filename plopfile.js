@@ -25,6 +25,11 @@ export default function (plop) {
       },
       {
         type: 'confirm',
+        name: 'shouldCreateService',
+        message: 'Should a service file be created?',
+      },
+      {
+        type: 'confirm',
         name: 'shouldCreateStory',
         message: 'Should a stories file be created?',
       },
@@ -32,7 +37,7 @@ export default function (plop) {
     actions(data) {
       const actions = [];
       const destPath = './src/components/{{type}}s';
-      const templatePath = '.plop/templates/components';
+      const templatePath = '.plop_templates/components';
 
       if (!data) return actions;
 
@@ -46,12 +51,6 @@ export default function (plop) {
         type: 'add',
         path: `${destPath}/{{capitalize componentsName}}/{{capitalize componentsName}}.types.ts`,
         templateFile: `${templatePath}/typesTemplate.ts.hbs`,
-      });
-
-      actions.push({
-        type: 'add',
-        path: `${destPath}/{{capitalize componentsName}}/{{capitalize componentsName}}.service.ts`,
-        templateFile: `${templatePath}/serviceTemplate.ts.hbs`,
       });
 
       actions.push({
@@ -73,6 +72,14 @@ export default function (plop) {
         template: "export * from './{{capitalize componentsName}}';\n$1",
         templateFile: '',
       });
+
+      if (data.shouldCreateService) {
+        actions.push({
+          type: 'add',
+          path: `${destPath}/{{capitalize componentsName}}/{{capitalize componentsName}}.service.ts`,
+          templateFile: `${templatePath}/serviceTemplate.ts.hbs`,
+        });
+      }
 
       if (data.shouldCreateStory) {
         actions.push({
