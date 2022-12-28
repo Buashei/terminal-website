@@ -8,11 +8,11 @@ const typeOfComponent = {
   default: 'atom',
 };
 
-const componentsName = {
+const provideName = (type) => ({
   type: 'input',
-  name: 'componentsName',
-  message: "What is the component's name?",
-};
+  name: `${type}sName`,
+  message: `What is the ${type}'s name?`,
+});
 
 const htmlElement = {
   type: 'input',
@@ -42,7 +42,7 @@ export default function (plop) {
   // plop generator code
   plop.setGenerator('components', {
     description: 'generate some new components',
-    prompts: [typeOfComponent, componentsName, shouldCreateService, shouldCreateStory],
+    prompts: [typeOfComponent, provideName('component'), shouldCreateService, shouldCreateStory],
     actions(data) {
       const actions = [];
       const destPath = './src/components/{{type}}s';
@@ -101,7 +101,7 @@ export default function (plop) {
   });
   plop.setGenerator('styled-components', {
     description: 'generate some new styled-components',
-    prompts: [componentsName, htmlElement, shouldCreateStory],
+    prompts: [provideName('component'), htmlElement, shouldCreateStory],
     actions(data) {
       const actions = [];
       const destPath = './src/components/atoms';
@@ -136,6 +136,45 @@ export default function (plop) {
           templateFile: `${templatePath}/storiesTemplate.stories.tsx.hbs`,
         });
       }
+      return actions;
+    },
+  });
+  plop.setGenerator('services', {
+    description: 'generate some new services',
+    prompts: [provideName('service')],
+    actions(data) {
+      const actions = [];
+      const destPath = './src/services';
+      const templatePath = '.plop_templates/services';
+
+      if (!data) return actions;
+
+      actions.push({
+        type: 'add',
+        path: `${destPath}/{{capitalize servicesName}}/{{capitalize servicesName}}.ts`,
+        templateFile: `${templatePath}/serviceTemplate.ts.hbs`,
+      });
+
+      actions.push({
+        type: 'add',
+        path: `${destPath}/{{capitalize servicesName}}/{{capitalize servicesName}}.test.ts`,
+        templateFile: `${templatePath}/testTemplate.ts.hbs`,
+      });
+
+      actions.push({
+        type: 'add',
+        path: `${destPath}/{{capitalize servicesName}}/index.ts`,
+        templateFile: `${templatePath}/indexTemplate.ts.hbs`,
+      });
+
+      actions.push({
+        type: 'modify',
+        pattern: /(\/\/ addExportHere)/g,
+        path: `${destPath}/index.ts`,
+        template: "export * from './{{capitalize servicesName}}';\n$1",
+        templateFile: '',
+      });
+
       return actions;
     },
   });
