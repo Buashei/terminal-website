@@ -31,6 +31,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "import", "jsx-a11y", "react-hooks", "@emotion", "prettier"],
   "rules": {
+    // prettier related
     "prettier/prettier": [
       "warn",
       {
@@ -38,15 +39,19 @@
         "singleQuote": true
       }
     ],
-    "react/jsx-uses-react": "error",   
-    "react/jsx-uses-vars": "error",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    // react related
+    "react/prop-types": "off",
     "react/button-has-type": ["error"],
     "react/no-array-index-key": ["warn"],
     "react/react-in-jsx-scope": ["off"],
+    "react/jsx-uses-react": "error",   
+    "react/jsx-uses-vars": "error",
     "react/jsx-closing-bracket-location": ["off"],
     "react/jsx-child-element-spacing": ["error"],
+    // react-hooks related
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    // @emotion related
     "@emotion/pkg-renaming": "error",
     "@emotion/jsx-import": "error",
     "@emotion/no-vanilla": "error",
