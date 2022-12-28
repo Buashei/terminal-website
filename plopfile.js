@@ -52,19 +52,19 @@ export default function (plop) {
 
       actions.push({
         type: 'add',
-        path: `${destPath}/{{capitalize componentsName}}/{{capitalize componentsName}}.tsx`,
+        path: `${destPath}/{{pascalCase componentsName}}/{{pascalCase componentsName}}.tsx`,
         templateFile: `${templatePath}/componentTemplate.tsx.hbs`,
       });
 
       actions.push({
         type: 'add',
-        path: `${destPath}/{{capitalize componentsName}}/{{capitalize componentsName}}.types.ts`,
+        path: `${destPath}/{{pascalCase componentsName}}/{{pascalCase componentsName}}.types.ts`,
         templateFile: `${templatePath}/typesTemplate.ts.hbs`,
       });
 
       actions.push({
         type: 'add',
-        path: `${destPath}/{{capitalize componentsName}}/index.ts`,
+        path: `${destPath}/{{pascalCase componentsName}}/index.ts`,
         templateFile: `${templatePath}/indexTemplate.ts.hbs`,
       });
 
@@ -72,19 +72,19 @@ export default function (plop) {
         type: 'modify',
         pattern: /(\/\/ addExportHere)/g,
         path: `${destPath}/index.ts`,
-        template: "export * from './{{capitalize componentsName}}';\n$1",
+        template: "export * from './{{pascalCase componentsName}}';\n$1",
         templateFile: '',
       });
 
       if (data.shouldCreateService) {
         actions.push({
           type: 'add',
-          path: `${destPath}/{{capitalize componentsName}}/{{capitalize componentsName}}.service.ts`,
+          path: `${destPath}/{{pascalCase componentsName}}/{{pascalCase componentsName}}.service.ts`,
           templateFile: `${templatePath}/serviceTemplate.ts.hbs`,
         });
         actions.push({
           type: 'add',
-          path: `${destPath}/{{capitalize componentsName}}/{{capitalize componentsName}}.test.ts`,
+          path: `${destPath}/{{pascalCase componentsName}}/{{pascalCase componentsName}}.test.ts`,
           templateFile: `${templatePath}/testTemplate.ts.hbs`,
         });
       }
@@ -92,7 +92,7 @@ export default function (plop) {
       if (data.shouldCreateStory) {
         actions.push({
           type: 'add',
-          path: `${destPath}/{{capitalize componentsName}}/{{capitalize componentsName}}.stories.ts`,
+          path: `${destPath}/{{pascalCase componentsName}}/{{pascalCase componentsName}}.stories.ts`,
           templateFile: `${templatePath}/storiesTemplate.stories.tsx.hbs`,
         });
       }
@@ -111,13 +111,13 @@ export default function (plop) {
 
       actions.push({
         type: 'add',
-        path: `${destPath}/{{capitalize componentsName}}/{{capitalize componentsName}}.tsx`,
+        path: `${destPath}/{{pascalCase componentsName}}/{{pascalCase componentsName}}.tsx`,
         templateFile: `${templatePath}/componentTemplate.tsx.hbs`,
       });
 
       actions.push({
         type: 'add',
-        path: `${destPath}/{{capitalize componentsName}}/index.ts`,
+        path: `${destPath}/{{pascalCase componentsName}}/index.ts`,
         templateFile: `${templatePath}/indexTemplate.ts.hbs`,
       });
 
@@ -125,14 +125,14 @@ export default function (plop) {
         type: 'modify',
         pattern: /(\/\/ addExportHere)/g,
         path: `${destPath}/index.ts`,
-        template: "export * from './{{capitalize componentsName}}';\n$1",
+        template: "export * from './{{pascalCase componentsName}}';\n$1",
         templateFile: '',
       });
 
       if (data.shouldCreateStory) {
         actions.push({
           type: 'add',
-          path: `${destPath}/{{capitalize componentsName}}/{{capitalize componentsName}}.stories.ts`,
+          path: `${destPath}/{{pascalCase componentsName}}/{{pascalCase componentsName}}.stories.ts`,
           templateFile: `${templatePath}/storiesTemplate.stories.tsx.hbs`,
         });
       }
@@ -151,19 +151,19 @@ export default function (plop) {
 
       actions.push({
         type: 'add',
-        path: `${destPath}/{{capitalize servicesName}}/{{capitalize servicesName}}.ts`,
+        path: `${destPath}/{{pascalCase servicesName}}/{{pascalCase servicesName}}.ts`,
         templateFile: `${templatePath}/serviceTemplate.ts.hbs`,
       });
 
       actions.push({
         type: 'add',
-        path: `${destPath}/{{capitalize servicesName}}/{{capitalize servicesName}}.test.ts`,
+        path: `${destPath}/{{pascalCase servicesName}}/{{pascalCase servicesName}}.test.ts`,
         templateFile: `${templatePath}/testTemplate.ts.hbs`,
       });
 
       actions.push({
         type: 'add',
-        path: `${destPath}/{{capitalize servicesName}}/index.ts`,
+        path: `${destPath}/{{pascalCase servicesName}}/index.ts`,
         templateFile: `${templatePath}/indexTemplate.ts.hbs`,
       });
 
@@ -171,7 +171,7 @@ export default function (plop) {
         type: 'modify',
         pattern: /(\/\/ addExportHere)/g,
         path: `${destPath}/index.ts`,
-        template: "export * from './{{capitalize servicesName}}';\n$1",
+        template: "export * from './{{pascalCase servicesName}}';\n$1",
         templateFile: '',
       });
 

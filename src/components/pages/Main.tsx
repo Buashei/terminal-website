@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react';
-import { MainService } from '../pages/Main/Main.service';
+import { ShellService } from 'src/services';
 import { Input, SEO } from 'src/components';
 
-// import type { TMain } from '../pages/Main/Main.types';
+const shell = new ShellService();
 
-const mainService = new MainService();
-
-// export const Main: TMain = () => {
 export const Main = () => {
-  const [state, setState] = useState(mainService.state);
+  const [state, setState] = useState(shell.state);
 
   useEffect(() => {
-    mainService.subscribe(setState);
+    shell.subscribe(setState);
 
-    return () => mainService.unsubscribe(setState);
+    return () => shell.unsubscribe(setState);
   }, []);
 
   return (
@@ -56,8 +53,8 @@ export const Main = () => {
           className='terminalInput'
           onBlurCapture={(e) => e.target.focus()}
           value={state.terminalInput}
-          onChange={(e) => mainService.setTerminalInput(e.target.value)}
-          onKeyDown={(e) => mainService.handleEnter(e)}
+          onChange={(e) => shell.setTerminalInput(e.target.value)}
+          onKeyDown={(e) => shell.handleEnter(e)}
         />
       </div>
     </>

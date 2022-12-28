@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { {{capitalize componentsName}}Service } from './{{capitalize componentsName}}.service';
+import { {{pascalCase componentsName}}Service } from './{{pascalCase componentsName}}.service';
 
-describe('{{capitalize componentsName}}Service.ts', () => {
-  it('{{lowerCase componentsName}} service should be defined', () => {
-    const {{lowerCase componentsName}}Service = new {{capitalize componentsName}}Service();
-    expect({{lowerCase componentsName}}Service).toBeDefined();
+describe('{{pascalCase componentsName}}Service.ts', () => {
+  it('{{camelCase componentsName}} service should be defined', () => {
+    const {{camelCase componentsName}}Service = new {{pascalCase componentsName}}Service();
+    expect({{camelCase componentsName}}Service).toBeDefined();
   });
 });
