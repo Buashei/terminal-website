@@ -18,11 +18,14 @@
     "plop": "plop"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "css-reset-and-normalize": "^2.3.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@emotion/eslint-plugin": "^11.10.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/lodash": "^4.14.191",

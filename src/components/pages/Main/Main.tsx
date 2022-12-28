@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { MainService } from './Main.service';
-// import type { KeyboardEvent } from 'react';
+import { Input } from 'src/components';
+
 import type { TMain } from './Main.types';
 
 const mainService = new MainService();
@@ -13,13 +14,6 @@ export const Main: TMain = () => {
 
     return () => mainService.unsubscribe(setState);
   }, []);
-
-  // const handleEnterKey = (e: KeyboardEvent<HTMLInputElement>) => {
-  //   if (e.key === 'Enter') {
-  //     mainService.setTerminalOutput(state.terminalInput);
-  //     mainService.setTerminalInput('');
-  //   }
-  // };
 
   return (
     <>
@@ -49,7 +43,7 @@ export const Main: TMain = () => {
           <span style={{ color: 'rgb(152, 151, 26)' }}>buashei.codes</span>
           <span style={{ color: 'rgb(168, 153, 132)' }}>:$ ~</span>
         </label>
-        <input
+        <Input
           id='prompt'
           type='text'
           className='terminalInput'
@@ -57,14 +51,6 @@ export const Main: TMain = () => {
           value={state.terminalInput}
           onChange={(e) => mainService.setTerminalInput(e.target.value)}
           onKeyDown={(e) => mainService.handleEnter(e)}
-          style={{
-            color: '#FFFFFF',
-            backgroundColor: 'transparent',
-            border: 'transparent',
-            outline: 'transparent',
-            flexGrow: 1,
-            marginLeft: '0.5rem',
-          }}
         />
       </div>
     </>

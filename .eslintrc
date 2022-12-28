@@ -29,18 +29,8 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "import", "jsx-a11y", "react-hooks", "prettier"],
+  "plugins": ["react", "@typescript-eslint", "import", "jsx-a11y", "react-hooks", "@emotion", "prettier"],
   "rules": {
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      {
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_",
-        "caughtErrorsIgnorePattern": "^_"
-      }
-    ],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
     "prettier/prettier": [
       "warn",
       {
@@ -48,10 +38,19 @@
         "singleQuote": true
       }
     ],
+    "react/jsx-uses-react": "error",   
+    "react/jsx-uses-vars": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "react/button-has-type": ["error"],
     "react/no-array-index-key": ["warn"],
     "react/react-in-jsx-scope": ["off"],
     "react/jsx-closing-bracket-location": ["off"],
-    "react/jsx-child-element-spacing": ["error"]
+    "react/jsx-child-element-spacing": ["error"],
+    "@emotion/pkg-renaming": "error",
+    "@emotion/jsx-import": "error",
+    "@emotion/no-vanilla": "error",
+    "@emotion/import-from-emotion": "error",
+    "@emotion/styled-import": "error"
   }
 }

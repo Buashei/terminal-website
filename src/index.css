@@ -106,7 +106,4 @@ input {
   50% {
     border-color: orange;
   }
-  100% {
-    border-color: transparent;
-  }
 }

@@ -24,12 +24,12 @@
     "experimentalDecorators": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
     "incremental": true,
     "baseUrl": "."
   },
   "include": [
     "vite.config.ts",
-    ".plopfile.ts",
     "**/*.ts",
     "**/*.tsx",
   ],
