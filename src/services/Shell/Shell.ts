@@ -15,6 +15,16 @@ interface ISendStateToComponent {
 }
 
 export class ShellService {
+  private static instance: ShellService;
+
+  public static getInstance(): ShellService {
+    if (!ShellService.instance) {
+      ShellService.instance = new ShellService();
+    }
+
+    return ShellService.instance;
+  }
+
   subscribers: ISendStateToComponent['subscribers'] = [];
   terminalInput: TState['terminalInput'] = '';
   terminalOutput: TState['terminalOutput'] = [];

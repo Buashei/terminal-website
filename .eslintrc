@@ -41,13 +41,13 @@
     ],
     // react related
     "react/prop-types": "off",
-    "react/button-has-type": ["error"],
-    "react/no-array-index-key": ["warn"],
-    "react/react-in-jsx-scope": ["off"],
+    "react/button-has-type": "error",
+    "react/no-array-index-key": "off",
+    "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "error",   
     "react/jsx-uses-vars": "error",
-    "react/jsx-closing-bracket-location": ["off"],
-    "react/jsx-child-element-spacing": ["error"],
+    "react/jsx-closing-bracket-location": "off",
+    "react/jsx-child-element-spacing": "error",
     // react-hooks related
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

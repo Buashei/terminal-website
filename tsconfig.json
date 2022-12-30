@@ -26,7 +26,13 @@
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "incremental": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/assets": ["./src/assets"],
+      "@/components": ["./src/components"],
+      "@/services": ["./src/services"],
+    }
   },
   "include": [
     "vite.config.ts",

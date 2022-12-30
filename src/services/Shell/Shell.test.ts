@@ -4,9 +4,15 @@ import { ShellService } from './Shell';
 import type { KeyboardEvent } from 'react';
 
 describe('MainService.ts', () => {
-  it('main service should be defined', () => {
+  it('checks if service is defined', () => {
     const shell = new ShellService();
     expect(shell).toBeDefined();
+  });
+
+  it('checks if service is a singleton', () => {
+    const shell1 = ShellService.getInstance();
+    const shell2 = ShellService.getInstance();
+    expect(shell1).toStrictEqual(shell2);
   });
 
   it('should subscribe callback', () => {
