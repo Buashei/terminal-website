@@ -44,6 +44,7 @@
 			"color": "#474343be"
 		}],
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"scss.lint.unknownAtRules": "ignore",
 		"eslint.validate": [
 		  "javascript",
 		  "javascriptreact",

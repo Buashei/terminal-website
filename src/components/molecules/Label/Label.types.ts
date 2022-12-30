@@ -1,7 +1,6 @@
-import type { CSSProperties, ReactElement } from 'react';
+import type { ReactElement } from 'react';
 
 type LabelProps = {
-  style: CSSProperties;
   className: string;
   htmlFor?: string;
 };

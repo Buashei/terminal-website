@@ -2,7 +2,7 @@ import { SEO, History, Prompt } from '@/components';
 
 export const Main = () => {
   return (
-    <div className='shell'>
+    <div className='shell' style={{ width: '100%' }}>
       <SEO
         title='buashei.codes | terminal'
         description='test description of terminal on buashei.codes page'

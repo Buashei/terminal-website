@@ -1,0 +1,36 @@
+@import '@scss/variables';
+@import '@scss/key-frames';
+
+.history {
+  &__row {
+    margin-bottom: 0.2rem;
+    width: max-width;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.1rem;
+  }
+
+  &__label {
+    flex-shrink: 1;
+  }
+
+  &__command {
+    flex-grow: 1;
+    margin-left: 0.5rem;
+  }
+
+  &__shell-output {
+    &--typewriter {
+      letter-spacing: 0.15em; /* Adjust as needed */
+      animation: typing 1s steps(40, end);
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 98vw;
+      word-wrap: break-word;
+    }
+  }
+}

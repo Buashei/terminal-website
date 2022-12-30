@@ -2,16 +2,16 @@ import { LabelContent } from '@/components';
 
 import type { TLabel } from './Label.types';
 
-export const Label: TLabel = ({ style, className, htmlFor }) => {
+export const Label: TLabel = ({ className, htmlFor }) => {
   if (htmlFor === undefined) {
     return (
-      <label className={className} style={style} htmlFor={htmlFor}>
+      <label className={className} htmlFor={htmlFor}>
         <LabelContent />
       </label>
     );
   }
   return (
-    <div className={className} style={style}>
+    <div className={className}>
       <LabelContent />
     </div>
   );

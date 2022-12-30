@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { ShellService } from '@/services';
-import { Label, Input } from '@/components';
+import { Label } from '@/components';
+import './Prompt.scss';
 
 import type { TPrompt } from './Prompt.types';
 
@@ -17,9 +18,9 @@ export const Prompt: TPrompt = () => {
   }, []);
 
   return (
-    <div className='prompt' style={{ display: 'flex', flexDirection: 'row', width: '100vw' }}>
-      <Label className='prompt__label' htmlFor='prompt_input' style={{ flexShrink: 1 }} />
-      <Input
+    <div className='prompt'>
+      <Label className='prompt__label' htmlFor='prompt_input' />
+      <input
         id='prompt_input'
         name='prompt_input'
         type='text'

@@ -31,6 +31,7 @@ export default defineConfig({
       { find: '@assets', replacement: path.resolve(__dirname, 'src/assets') },
       { find: '@components', replacement: path.resolve(__dirname, 'src/components') },
       { find: '@services', replacement: path.resolve(__dirname, 'src/services') },
+      { find: '@scss', replacement: path.resolve(__dirname, 'src/scss') },
     ],
   },
 });

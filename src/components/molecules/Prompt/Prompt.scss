@@ -1,0 +1,18 @@
+.prompt {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+
+  &__label {
+    flex-shrink: 1;
+  }
+
+  &__input {
+    color: #ffffff;
+    background-color: transparent;
+    border: transparent;
+    outline: transparent;
+    flex-grow: 1;
+    margin-left: 0.5rem;
+  }
+}
