@@ -33,9 +33,9 @@ export const Prompt: TPrompt = () => {
             type='text'
             className='prompt__input'
             onBlurCapture={(e) => e.target.focus()}
-            value={state.terminalInput}
-            onChange={(e) => shell.setTerminalInput(e.target.value)}
-            onKeyDown={(e) => shell.handleEnter(e)}
+            value={state.prompt}
+            onChange={(e) => shell.setPrompt(e.target.value)}
+            onKeyDown={(e) => shell.handleKeyboard(e)}
           />
         </div>
       </div>
@@ -50,9 +50,11 @@ export const Prompt: TPrompt = () => {
         type='text'
         className='prompt__input'
         onBlurCapture={(e) => e.target.focus()}
-        value={state.terminalInput}
-        onChange={(e) => shell.setTerminalInput(e.target.value)}
-        onKeyDown={(e) => shell.handleEnter(e)}
+        value={state.prompt}
+        onChange={(e) => shell.setPrompt(e.target.value)}
+        onKeyDown={(e) => {
+          shell.handleKeyboard(e);
+        }}
       />
     </div>
   );

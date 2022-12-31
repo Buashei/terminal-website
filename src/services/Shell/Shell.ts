@@ -1,7 +1,7 @@
 import type { KeyboardEvent } from 'react';
 
 type TState = {
-  terminalInput: string;
+  prompt: string;
   terminalOutput: string[];
 };
 
@@ -26,12 +26,12 @@ export class ShellService {
   }
 
   subscribers: ISendStateToComponent['subscribers'] = [];
-  terminalInput: TState['terminalInput'] = '';
+  prompt: TState['prompt'] = '';
   terminalOutput: TState['terminalOutput'] = [];
 
   get state() {
     return {
-      terminalInput: this.terminalInput,
+      prompt: this.prompt,
       terminalOutput: this.terminalOutput,
     };
   }
@@ -48,13 +48,13 @@ export class ShellService {
     this.subscribers.forEach((subscriber) => subscriber({ ...this.state }));
   }
 
-  setTerminalInput(input: string) {
-    this.terminalInput = input;
+  setPrompt(input: string) {
+    this.prompt = input;
     this.notifySubscribers();
   }
 
-  getTerminalInput() {
-    return this.terminalInput;
+  getPrompt() {
+    return this.prompt;
   }
 
   setTerminalOutput(input: string) {
@@ -66,10 +66,21 @@ export class ShellService {
     return this.terminalOutput;
   }
 
-  handleEnter(e: KeyboardEvent<HTMLInputElement>) {
-    if (e.key === 'Enter') {
-      this.setTerminalOutput(this.terminalInput);
-      this.setTerminalInput('');
+  handleKeyboard(e: KeyboardEvent<HTMLInputElement>) {
+    switch (e.code) {
+      case 'Enter':
+        this.setTerminalOutput(this.prompt);
+        this.setPrompt('');
+        break;
+      case 'KeyC':
+        this.setPrompt('');
+        break;
+      case 'KeyL':
+        this.setTerminalOutput('');
+        this.setPrompt('');
+        break;
+      default:
+        break;
     }
   }
 }
