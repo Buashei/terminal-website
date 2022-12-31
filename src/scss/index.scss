@@ -1,15 +1,15 @@
 @import-normalize;
 
 * {
+  font-size: 1rem;
   color: white;
   font: 1.3rem Inconsolata, monospace;
   text-shadow: 0 0 5px #c8c8c8;
-  outline: 2px solid pink;
 }
 
 :root {
-  // font-size: 16px;
-  // line-height: 24px;
+  font-size: 16px;
+  line-height: 24px;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -31,7 +31,7 @@ body {
   max-width: 98vw;
   min-height: 100vh;
 
-  color-scheme: light dark;
+  // color-scheme: light dark;
   background-color: #000000;
   background-image: radial-gradient(rgba(0, 150, 0, 0.8), black 110%);
 }
@@ -52,15 +52,15 @@ body {
 //   );
 // }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+// @media (prefers-color-scheme: light) {
+//   :root {
+//     color: #213547;
+//     background-color: #ffffff;
+//   }
+//   a:hover {
+//     color: #747bff;
+//   }
+//   button {
+//     background-color: #f9f9f9;
+//   }
+// }

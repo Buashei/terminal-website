@@ -1,10 +1,31 @@
+@import '../../../scss/mixins';
+
 .prompt {
-  width: 100vw;
   display: flex;
   flex-direction: row;
 
+  @include for-phone-only {
+    flex-direction: column;
+    width: 100vw;
+
+    &__row {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &__decorator {
+      font-size: 24px;
+      line-height: 24px;
+      color: rgb(168, 153, 132);
+    }
+  }
+
   &__label {
     flex-shrink: 1;
+
+    @include for-phone-only {
+      margin-left: 0.5rem;
+    }
   }
 
   &__input {
