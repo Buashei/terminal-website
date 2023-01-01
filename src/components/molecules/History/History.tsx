@@ -23,6 +23,10 @@ export const History: THistory = () => {
     return () => shell.unsubscribe(setState);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  }, [state.history.length]);
+
   return (
     <div className='history'>
       {state.history.map(({ id, command, output }) => {

@@ -58,9 +58,7 @@ export const Prompt: TPrompt = () => {
         }
         value={state.prompt}
         onChange={(e) => shell.setPrompt(e.target.value)}
-        onKeyDown={(e) => {
-          shell.handleKeyboard(e);
-        }}
+        onKeyDown={(e) => shell.handleKeyboard(e)}
       />
     </div>
   );
