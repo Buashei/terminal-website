@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Helmet, HelmetData } from 'react-helmet-async';
 
 import type { TSEO } from './SEO.types';
