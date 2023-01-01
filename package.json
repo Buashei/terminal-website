@@ -13,9 +13,13 @@
     "lint:fix": "eslint --quiet --fix . --ext .ts,.tsx",
     "prettier": "npx prettier src --check",
     "prettier:fix": "npm run prettier -- --write",
-    "format": "npm run prettier:fix && npm run lint:fix",
+    "format": "npm run prettier && npm run lint",
+    "format:fix": "npm run prettier:fix && npm run lint:fix",
     "prepare": "husky install",
-    "plop": "plop"
+    "plop": "plop",
+    "preversion": "npm run format && npm run test",
+    "version": "",
+    "postversion": "git push && git push --tags && npm publish"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
