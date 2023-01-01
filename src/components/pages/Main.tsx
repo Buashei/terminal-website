@@ -9,8 +9,11 @@ export const Main = () => {
         name='buashei.codes'
         type='website'
       />
-      <History />
-      <Prompt />
+
+      <div className='shell__container'>
+        <History />
+        <Prompt />
+      </div>
     </div>
   );
 };

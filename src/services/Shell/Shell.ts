@@ -92,6 +92,7 @@ export class ShellService {
   }
 
   handleKeyboard(e: KeyboardEvent<HTMLInputElement>) {
+    if (this.prompt.length === 0) return;
     if (e.key === 'Enter') {
       this.run();
       this.clearPrompt();

@@ -3,3 +3,5 @@ dist/
 .prettierrc.js
 .eslintrc.js
 env.d.ts
+src/helpers.ts
+src/components/atoms/SEO/SEO.tsx

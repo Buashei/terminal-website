@@ -45,11 +45,17 @@ export const Prompt: TPrompt = () => {
     <div className='prompt'>
       <Label className='prompt__label' htmlFor='prompt_input' />
       <input
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus={true}
         id='prompt_input'
         name='prompt_input'
         type='text'
         className='prompt__input'
-        onBlurCapture={(e) => e.target.focus()}
+        onBlur={(e) =>
+          setTimeout(() => {
+            e.target.focus();
+          }, 100)
+        }
         value={state.prompt}
         onChange={(e) => shell.setPrompt(e.target.value)}
         onKeyDown={(e) => {
