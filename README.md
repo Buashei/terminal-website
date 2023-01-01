@@ -66,6 +66,7 @@ Thank you for visiting!
 - `format` - to log lint and format errors in files using ESLint and Prettier. Started automatically by `husky` every time you run `git commit -m " "`
 - `prepare` - to automatically have Git hooks enabled after install
 - `plop` - A little tool that saves you time and helps your team build new files with consistency. Generate code when you want, how you want.
+- `semver` - to add semver to project use command `npm run semver -- version=maj.min.ptch`
 
 ### If you would like to see the output of the container in the terminal built into WSL.
 
