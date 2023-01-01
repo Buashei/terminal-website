@@ -2,7 +2,7 @@
   "name": "terminal-website",
   "private": true,
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -17,9 +17,9 @@
     "format:fix": "npm run prettier:fix && npm run lint:fix",
     "prepare": "husky install",
     "plop": "plop",
-    "preversion": "npm run format && npm run test",
-    "version": "",
-    "postversion": "git push && git push --tags && npm publish"
+    "presemver": "npm run format && npm test",
+    "semver": "npm pkg set",
+    "postsemver": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
