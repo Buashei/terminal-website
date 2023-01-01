@@ -23,6 +23,7 @@
   }
 
   &__shell-output {
+    white-space: pre;
     &--typewriter {
       letter-spacing: 0.15em; /* Adjust as needed */
       animation: typing 1s steps(40, end);

@@ -1,11 +1,12 @@
 import { describe, vi, it, expect } from 'vitest';
 import { ShellService } from './Shell';
+import * as commands from './commands';
 
 import type { KeyboardEvent } from 'react';
 
 describe('MainService.ts', () => {
   it('checks if service is defined', () => {
-    const shell = new ShellService();
+    const shell = ShellService.getInstance();
     expect(shell).toBeDefined();
   });
 
@@ -16,7 +17,7 @@ describe('MainService.ts', () => {
   });
 
   it('should subscribe callback', () => {
-    const shell = new ShellService();
+    const shell = ShellService.getInstance();
     const mock = vi.fn();
     shell.subscribe(mock);
     shell.notifySubscribers();
@@ -24,7 +25,7 @@ describe('MainService.ts', () => {
   });
 
   it('should unsubscribe callback', () => {
-    const shell = new ShellService();
+    const shell = ShellService.getInstance();
     const mock = vi.fn();
     shell.subscribe(mock);
     shell.unsubscribe(mock);
@@ -32,7 +33,7 @@ describe('MainService.ts', () => {
     expect(mock).not.toHaveBeenCalled();
   });
 
-  it('should set terminalInput', () => {
+  it('should set prompt', () => {
     const shell = new ShellService();
     const mockedInput = 'lorem ipsum dolor sit amet';
 
@@ -42,57 +43,144 @@ describe('MainService.ts', () => {
     expect(result).toStrictEqual(mockedInput);
   });
 
-  it('should set terminalOutput', () => {
+  it('should set history', () => {
     const shell = new ShellService();
-    const mockedInput = 'lorem ipsum dolor sit amet';
-    const mockedOutput = [mockedInput, mockedInput];
+    const mockedCommand = 'version';
+    const mockedInput = {
+      date: Date.now(),
+      command: mockedCommand,
+      output: commands.version(),
+    };
+    const mockedOutput = {
+      id: 0,
+      date: mockedInput.date,
+      command: mockedInput.command,
+      output: mockedInput.output,
+    };
 
-    shell.setTerminalOutput(mockedInput);
-    shell.setTerminalOutput(mockedInput);
-    const result = shell.getTerminalOutput();
+    shell.setHistory(mockedInput);
+    const result = shell.getHistory();
 
-    expect(result).toStrictEqual(mockedOutput);
+    expect(result).toStrictEqual([mockedOutput]);
   });
 
-  it('shoud set proper terminalOutput and terminalInput after keyDownEnter event triggered on input', () => {
+  it('shoud return proper history after keyDownEnter event triggered', () => {
     const shell = new ShellService();
-    const mockedInput = 'lorem ipsum dolor sit amet';
-    const mockedEnterEvent = { code: 'Enter' } as KeyboardEvent<HTMLInputElement>;
+    const mockedCommand = 'version';
+    const mockedEnterEvent = { key: 'Enter' } as KeyboardEvent<HTMLInputElement>;
+    const mockedOutput = [
+      {
+        id: 0,
+        command: mockedCommand,
+        date: Date.now() + 1 - 1,
+        output: commands.version(),
+      },
+    ];
 
-    shell.setPrompt(mockedInput);
+    shell.setPrompt(mockedCommand);
     shell.handleKeyboard(mockedEnterEvent);
-    const terminalOutput = shell.getTerminalOutput();
-    const terminalInput = shell.getPrompt();
 
-    expect(terminalOutput).toStrictEqual([mockedInput]);
-    expect(terminalInput).toStrictEqual('');
+    const prompt = shell.getPrompt();
+    const history = shell.getHistory();
+
+    expect(prompt).toStrictEqual('');
+    expect(history).toStrictEqual(mockedOutput);
   });
 
-  it('shoud set proper terminalOutput and terminalInput after Ctrl + C event triggered on input', () => {
+  it('should clear prompt', () => {
     const shell = new ShellService();
-    const mockedInput = 'lorem ipsum dolor sit amet';
-    const mockedEnterEvent = { code: 'KeyC' } as KeyboardEvent<HTMLInputElement>;
+    const mockedCommand = 'version';
 
-    shell.setPrompt(mockedInput);
-    shell.handleKeyboard(mockedEnterEvent);
-    const terminalOutput = shell.getTerminalOutput();
-    const terminalInput = shell.getPrompt();
+    shell.setPrompt(mockedCommand);
+    shell.clearPrompt();
+    const prompt = shell.getPrompt();
 
-    expect(terminalOutput).toStrictEqual([]);
-    expect(terminalInput).toStrictEqual('');
+    expect(prompt).toStrictEqual('');
   });
 
-  it('shoud set proper terminalOutput and terminalInput after Ctrl + L event triggered on input', () => {
+  it('should clear prompt and history', () => {
     const shell = new ShellService();
-    const mockedInput = 'lorem ipsum dolor sit amet';
-    const mockedEnterEvent = { code: 'KeyL' } as KeyboardEvent<HTMLInputElement>;
+    const mockedCommand = 'version';
+    const mockedInput = {
+      date: Date.now(),
+      command: mockedCommand,
+      output: commands.version(),
+    };
 
-    shell.setPrompt(mockedInput);
+    shell.setPrompt(mockedCommand);
+    shell.setHistory(mockedInput);
+    shell.clearAll();
+
+    const prompt = shell.getPrompt();
+    const history = shell.getHistory();
+
+    expect(prompt).toStrictEqual('');
+    expect(history).toStrictEqual([]);
+  });
+
+  it('shoud clear prompt after Ctrl + C triggered on input', () => {
+    const shell = ShellService.getInstance();
+    const mockedValue = 'lorem ipsum dolor sit amet';
+    const mockedCtrlCEvent = { key: 'c', ctrlKey: true } as KeyboardEvent<HTMLInputElement>;
+
+    shell.setPrompt(mockedValue);
+    shell.handleKeyboard(mockedCtrlCEvent);
+
+    const prompt = shell.getPrompt();
+
+    expect(prompt).toStrictEqual('');
+  });
+
+  it('shoud set proper prompt and history after Ctrl + L triggered on input', () => {
+    const shell = ShellService.getInstance();
+    const mockedCommand = 'version';
+    const mockedInput = {
+      date: Date.now(),
+      command: mockedCommand,
+      output: commands.version(),
+    };
+    const mockedCtrlLEvent = {
+      key: 'l',
+      ctrlKey: true,
+      preventDefault: vi.fn(),
+    } as unknown as KeyboardEvent<HTMLInputElement>;
+
+    shell.setPrompt(mockedCommand);
+    shell.setHistory(mockedInput);
+    shell.handleKeyboard(mockedCtrlLEvent);
+
+    const prompt = shell.getPrompt();
+    const history = shell.getHistory();
+
+    expect(prompt).toStrictEqual('');
+    expect(history).toStrictEqual([]);
+  });
+
+  it('should run version command', () => {
+    const shell = new ShellService();
+    const mockedEnterEvent = { key: 'Enter' } as KeyboardEvent<HTMLInputElement>;
+    const mockedCommand = 'version';
+    const mockedHistoryOutput = commands.version();
+    shell.setPrompt(mockedCommand);
     shell.handleKeyboard(mockedEnterEvent);
-    const terminalOutput = shell.getTerminalOutput();
-    const terminalInput = shell.getPrompt();
 
-    expect(terminalOutput).toStrictEqual(['']);
-    expect(terminalInput).toStrictEqual('');
+    const history = shell.getHistory();
+
+    expect(history[0].output).toStrictEqual(mockedHistoryOutput);
+  });
+
+  it('should run clear command', () => {
+    const shell = ShellService.getInstance();
+    const mockedEnterEvent = { key: 'Enter' } as KeyboardEvent<HTMLInputElement>;
+
+    shell.setPrompt('version');
+    shell.handleKeyboard(mockedEnterEvent);
+    shell.setPrompt('clear');
+    shell.handleKeyboard(mockedEnterEvent);
+    const history = shell.getHistory();
+    const prompt = shell.getPrompt();
+
+    expect(history).toStrictEqual([]);
+    expect(prompt).toStrictEqual('');
   });
 });

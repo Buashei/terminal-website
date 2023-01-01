@@ -1,8 +1,16 @@
+import * as commands from './commands';
+
 import type { KeyboardEvent } from 'react';
 
 type TState = {
   prompt: string;
-  terminalOutput: string[];
+  output: string;
+  history: {
+    id: number;
+    date: number;
+    command: TState['prompt'];
+    output: TState['output'];
+  }[];
 };
 
 type ISubscriber = React.Dispatch<React.SetStateAction<TState>>;
@@ -27,12 +35,14 @@ export class ShellService {
 
   subscribers: ISendStateToComponent['subscribers'] = [];
   prompt: TState['prompt'] = '';
-  terminalOutput: TState['terminalOutput'] = [];
+  output: TState['output'] = '';
+  history: TState['history'] = [];
 
   get state() {
     return {
       prompt: this.prompt,
-      terminalOutput: this.terminalOutput,
+      output: this.output,
+      history: this.history,
     };
   }
 
@@ -57,30 +67,76 @@ export class ShellService {
     return this.prompt;
   }
 
-  setTerminalOutput(input: string) {
-    this.terminalOutput.push(input);
+  setHistory({ date, command, output }: { date: number; command: string; output: string }) {
+    this.history.push({
+      id: this.history.length,
+      date,
+      command,
+      output,
+    });
     this.notifySubscribers();
   }
 
-  getTerminalOutput() {
-    return this.terminalOutput;
+  getHistory() {
+    return this.history;
+  }
+
+  clearPrompt() {
+    this.setPrompt('');
+  }
+
+  clearAll() {
+    this.clearPrompt();
+    this.history = [];
+    this.notifySubscribers();
   }
 
   handleKeyboard(e: KeyboardEvent<HTMLInputElement>) {
-    switch (e.code) {
-      case 'Enter':
-        this.setTerminalOutput(this.prompt);
-        this.setPrompt('');
+    if (e.key === 'Enter') {
+      this.run();
+      this.clearPrompt();
+      return;
+    }
+    if (e.key === 'c' && e.ctrlKey) {
+      this.clearPrompt();
+      return;
+    }
+    if (e.key === 'l' && e.ctrlKey) {
+      e.preventDefault();
+      this.clearAll();
+      return;
+    }
+  }
+
+  run() {
+    switch (this.prompt) {
+      case 'clear':
+        this.clearAll();
         break;
-      case 'KeyC':
-        this.setPrompt('');
-        break;
-      case 'KeyL':
-        this.setTerminalOutput('');
-        this.setPrompt('');
-        break;
+
       default:
-        break;
+        if (Object.keys(commands).indexOf(this.prompt) === -1) {
+          this.setHistory({
+            date: Date.now(),
+            command: this.prompt,
+            output: `Command not found: ${this.prompt}. Try 'help' to get started.`,
+          });
+        } else {
+          try {
+            const output = commands[this.prompt as 'version' | 'help']();
+            this.setHistory({
+              date: Date.now(),
+              command: this.prompt,
+              output: output,
+            });
+          } catch (error) {
+            this.setHistory({
+              date: Date.now(),
+              command: this.prompt,
+              output: 'error',
+            });
+          }
+        }
     }
   }
 }

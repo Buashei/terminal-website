@@ -2,11 +2,17 @@ import { useEffect, useState } from 'react';
 
 import { ShellService } from '@/services';
 import { Label } from '@/components';
+import * as commands from '@/services/Shell/commands';
 import './History.scss';
 
 import type { THistory } from './History.types';
 
 const shell = ShellService.getInstance();
+shell.setHistory({
+  date: Date.now(),
+  command: 'version',
+  output: commands.version(),
+});
 
 export const History: THistory = () => {
   const [state, setState] = useState(shell.state);
@@ -19,14 +25,14 @@ export const History: THistory = () => {
 
   return (
     <div className='history'>
-      {state.terminalOutput.map((element, idx) => {
+      {state.history.map(({ id, command, output }) => {
         return (
-          <div key={`history__row--${idx}`} className='history__row'>
+          <div key={`history__row--${id}`} className='history__row'>
             <div className='history__info'>
               <Label className='history__label' />
-              <div className='history__command'>commandName</div>
+              <div className='history__command'>{command}</div>
             </div>
-            <div className='history__shell-output'>{element}</div>
+            <p className='history__shell-output'>{output}</p>
           </div>
         );
       })}
